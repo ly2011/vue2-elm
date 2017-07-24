@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import musicHeader from 'SRC/components/music-header'
 import musicFooter from 'SRC/components/music-footer'
 export default {
@@ -34,22 +34,32 @@ export default {
       title: '吃饭啦'
     })
     if (this.banner.length === 0) {
-      this.$store.dispatch('getBannerList')
+      this.getBannerList()
     }
     if (this.nowplay.length === 0) {
-      this.$store.dispatch('getNowPlaying')
+      this.getNowPlaying()
     }
     if (this.coming.length === 0) {
-      this.$store.dispatch('getComingSoon')
+      this.getComingSoon()
     }
-    this.$nextTick(function() {
+    this.$nextTick(function () {
     });
   },
-  computed: mapGetters({
-    banner: 'getBannerList',
-    nowplay: 'getNowPlaying',
-    coming: 'getComingSoon'
-  })
+  computed: {
+    ...mapGetters({
+      banner: 'getBannerList',
+      nowplay: 'getNowPlaying',
+      coming: 'getComingSoon'
+    })
+  },
+  methods: {
+    ...mapActions({
+      getBannerList: 'getBannerList',
+      getNowPlaying: 'getNowPlaying',
+      getComingSoon: 'getComingSoon'
+
+    })
+  }
 
 }
 </script>

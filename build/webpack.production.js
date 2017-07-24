@@ -1,38 +1,39 @@
-const webpack = require('webpack');
-const path = require('path');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base');
+const webpack = require('webpack')
+const path = require('path')
+const merge = require('webpack-merge')
+const baseConfig = require('./webpack.base')
 // const getEntries = require('./getEntries')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Visualizer = require('webpack-visualizer-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Visualizer = require('webpack-visualizer-plugin')
+const CleanPlugin = require('clean-webpack-plugin')
+const OfflinePlugin = require('offline-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 // const WebpackStrip = require('strip-loader') const BannerPlugin =
 // webpack.BannerPlugin
 
 /**
  * banners
  */
-const json = require('../package.json');
+const json = require('../package.json')
 
-const version = json.version.split('.');
-const v = `${version.shift()}.${version.join('')}`.replace(/0+$/, '0');
-const now = new Date();
+const version = json.version.split('.')
+const v = `${version.shift()}.${version.join('')}`.replace(/0+$/, '0')
+const now = new Date()
 const snow = `${now.getFullYear()}-${now.getMonth() +
-  1}-${now.getDate()}:${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+  1}-${now.getDate()}:${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
 
-function resolve(dir = '.') {
-  return path.join(__dirname, '..', dir);
+function resolve (dir = '.') {
+  return path.join(__dirname, '..', dir)
 }
 /**
  * 目录/路径
  */
-const srcPath = resolve('src');
-const buildPath = resolve('dist');
-const faviconPath = resolve('src/assets/favicon.ico');
+const srcPath = resolve('src')
+const buildPath = resolve('dist')
+const faviconPath = resolve('src/assets/favicon.ico')
 
 const productionConf = merge(baseConfig, {
   entry: {
@@ -169,17 +170,17 @@ const productionConf = merge(baseConfig, {
     // 每次运行webpack清理上一次的文件夹
     new CleanPlugin([buildPath]),
     new webpack.NamedModulesPlugin(),
-    function() {
+    function () {
       return this.plugin('done', stats => {
         // var content = JSON.stringify(stats.toJson().assetsByChunkName, null, 2)
-        console.log(`版本是：${JSON.stringify(stats.toJson().hash)}`);
-      });
+        console.log(`版本是：${JSON.stringify(stats.toJson().hash)}`)
+      })
     },
     new webpack.BannerPlugin(`built in ${snow} version ${v} by luyun\n`),
     // new ExtractTextPlugin({   filename: 'css/[name].[hash].css',   allChunks:
     // true }), 打包分析
     new Visualizer({ filename: './statistics.html' })
   ]
-});
+})
 
-module.exports = productionConf;
+module.exports = productionConf

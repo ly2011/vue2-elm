@@ -7,7 +7,7 @@ import axios from "axios";
 const baseURL =
   process.env.NODE_ENV !== "production"
     ? "http://127.0.0.1:3000"
-    : "http://m.maizuo.com/v4/api";
+    : "http://127.0.0.1:3000";
 
 const axios_config = {
   baseURL: baseURL,
@@ -32,11 +32,11 @@ export default {
     instance
       .get(`/billboard/home?t=${new Date() * 1}`)
       .then(res => {
-        cb(res.data);
+        cb && cb(null, res.data);
       })
       .catch(err => {
         console.error(err);
-        return err;
+        cb && cb(err);
       });
   },
   // 获取首页热映电影
@@ -44,11 +44,11 @@ export default {
     instance
       .get(`/film/now-playing?_t=${new Date() * 1}&page=1&count=5`)
       .then(res => {
-        cb(res.data);
+        cb && cb(null, res.data);
       })
       .catch(err => {
         console.error(err);
-        return err;
+        cb && cb(err);
       });
   },
   // 获取首页即将上映电影
@@ -56,11 +56,11 @@ export default {
     instance
       .get(`/film/coming-soon?_t=${new Date() * 1}&page=1&count=3`)
       .then(res => {
-        cb(res.data);
+        cb && cb(null, res.data);
       })
       .catch(err => {
         console.error(err);
-        return err;
+        cb && cb(err);
       });
   }
 };

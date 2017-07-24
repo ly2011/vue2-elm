@@ -14,24 +14,30 @@ const actions = {
   // 获取banner列表
   getBannerList({ commit }) {
     commit(types.COM_LOADING_STATUS, true);
-    api.getBannerList(res => {
-      commit(types.HOME_GET_BANNER_LIST, res.data);
+    api.getBannerList((err, res) => {
+      if (!err) {
+        commit(types.HOME_GET_BANNER_LIST, res.data);
+      }
       commit(types.COM_LOADING_STATUS, false);
     });
   },
   // 获取热映
   getNowPlaying({ commit }) {
     commit(types.COM_LOADING_STATUS, true);
-    api.getNowPlaying(res => {
-      commit(types.HOME_GET_NOWPLAYING_LIST, res.data);
+    api.getNowPlaying((err, res) => {
+      if (!err) {
+        commit(types.HOME_GET_NOWPLAYING_LIST, res.data);
+      }
       commit(types.COM_LOADING_STATUS, false);
     });
   },
   // 获取即将上映
   getComingSoon({ commit }) {
     commit(types.COM_LOADING_STATUS, true);
-    api.getComingSoon(res => {
-      commit(types.HOME_GET_COMINGSOON_LIST, res.data);
+    api.getComingSoon((err, res) => {
+      if (!err) {
+        commit(types.HOME_GET_COMINGSOON_LIST, res.data);
+      }
       commit(types.COM_LOADING_STATUS, false);
     });
   }
