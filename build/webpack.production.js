@@ -138,7 +138,7 @@ const productionConf = merge(baseConfig, {
       favicon: faviconPath, // favicon路径
       filename: 'index.html',
       template: resolve('src/index.html'),
-      hash: true,
+      hash: false,
       // excludeChunks: 'appcache/manifest.appcache',
       inject: true,
       minify: {
