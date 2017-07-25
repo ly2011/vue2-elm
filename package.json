@@ -143,11 +143,7 @@
     "vuex-router-sync": "^4.2.0"
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.vue": [
+    "src/**/*.(js|vue)": [
       "prettier --write",
       "git add"
     ]
