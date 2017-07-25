@@ -55,6 +55,7 @@
     "eslint-config-vue": "^2.0.2",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
+    "eslint-plugin-html": "^3.1.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^6.10.3",
@@ -143,6 +144,10 @@
   },
   "lint-staged": {
     "src/**/*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.vue": [
       "prettier --write",
       "git add"
     ]
