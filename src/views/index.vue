@@ -79,12 +79,28 @@
     </div>
 
     <div class="block">
-      <el-button-group v-model="radio3">
+      <el-radio-group v-model="radio3" size="small">
         <el-radio-button label="北京"></el-radio-button>
         <el-radio-button label="上海" :disabled="true"></el-radio-button>
         <el-radio-button label="广州"></el-radio-button>
         <el-radio-button label="深圳"></el-radio-button>
-      </el-button-group>
+      </el-radio-group>
+    </div>
+
+    <div class="block">
+
+      <el-checkbox v-model="checked" disabled>备选项</el-checkbox>
+      <el-checkbox v-model="checked2" disabled>备选项</el-checkbox>
+    </div>
+
+    <div class="block">
+      <el-checkbox-group v-model="checkList">
+        <el-checkbox label="复选框 A"></el-checkbox>
+        <el-checkbox label="复选框 B"></el-checkbox>
+        <el-checkbox label="复选框 C"></el-checkbox>
+        <el-checkbox label="禁用" disabled></el-checkbox>
+        <el-checkbox label="选中且禁用" disabled></el-checkbox>
+      </el-checkbox-group>
     </div>
   </div>
 </template>
@@ -122,7 +138,10 @@ export default {
       radio: '1',
       radio1: '选中且禁用',
       radio2: 3,
-      radio3: '上海'
+      radio3: '上海',
+      checked: true,
+      checked2: false,
+      checkList: ['选中且禁用', '复选框 A']
     }
   },
   mounted() {
