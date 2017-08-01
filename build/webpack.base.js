@@ -46,7 +46,6 @@ module.exports = {
       '.tsx'
     ],
     alias: {
-      '@': resolve('src'),
       SRC: resolve('src'),
       ASSETS: resolve('src/assets'),
       COMPONENTS: resolve('src/components'),
@@ -156,8 +155,13 @@ module.exports = {
         })
       },
       {
+        test: /\.css$/,
+        include: [nodeModulesPath],
+        use: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
         test: /\.(scss|sass)$/,
-        include: srcPath,
+        include: [srcPath],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -191,12 +195,12 @@ module.exports = {
       },
       {
         test: /\.(scss|sass)$/,
-        include: nodeModulesPath,
+        include: [nodeModulesPath],
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
         test: /\.less$/,
-        include: srcPath,
+        include: [srcPath],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -250,7 +254,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        include: srcPath,
+        include: [srcPath],
         exclude: nodeModulesPath,
         use: [
           {

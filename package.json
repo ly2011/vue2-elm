@@ -11,13 +11,14 @@
     "fix": "eslint src/**/*.vue src/**/*.js server/**/*.js --fix",
     "server": "nodemon server/index.js",
     "publish": "npm run build",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "et": "et -i"
   },
   "keywords": [
     "vue",
     "vuex",
     "vue-router",
-    "webpack2"
+    "webpack3"
   ],
   "author": "ly2011",
   "license": "ISC",
@@ -38,6 +39,7 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
+    "babel-plugin-component": "^0.10.0",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-latest": "^6.16.0",
@@ -50,6 +52,7 @@
     "compression": "^1.6.2",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
+    "element-theme-default": "^1.4.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-vue": "^2.0.2",
@@ -118,6 +121,7 @@
     "@types/react": "^15.0.25",
     "@types/react-router": "^4.0.9",
     "babel-polyfill": "^6.23.0",
+    "element-ui": "^1.4.1",
     "fastclick": "^1.0.6",
     "history": "^4.6.1",
     "isomorphic-fetch": "^2.2.1",

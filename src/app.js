@@ -5,6 +5,8 @@ import router from './router'
 import store from './stores/store'
 import './config'
 
+// import 'element-ui/lib/theme-default/index.css'
+
 const env = process.env.NODE_ENV || 'development';
 
 if (env !== 'development') {

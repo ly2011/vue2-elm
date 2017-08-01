@@ -9,38 +9,16 @@
   </div>
 </template>
 <script>
+
 export default {
   name: 'app',
-  data() {
-    return {
-      go_top: false
-    }
-  },
+
   computed: {},
   mounted() {
 
   },
   methods: {
-    // 显示返回顶部按钮
-    showTop() {
-      if (document.body.scrollTop > 200) {
-        this.go_top = true
-      } else {
-        this.go_top = false
-      }
-    },
-    // 返回顶部
-    goTop() {
-      let speed = 10
-      const timer = setInterval(() => {
-        if (window.body.scrollTop > 0) {
-          document.body.scrollTop = document.body.scrollTop - speed > 0 ? document.body.scrollTop - speed : 0
-          speed += 20
-        } else {
-          clearInterval(timer)
-        }
-      }, 16)
-    }
+
   }
 }
 </script>
