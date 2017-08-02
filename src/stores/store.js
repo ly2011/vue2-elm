@@ -5,18 +5,18 @@
  * 3. 子 mutations 需要定义数据的 [状态] 和 [mutation]
  */
 
-import Vue from "vue";
-import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 /**
  * 导入各个模块的 [初始状态] 和 [mutations]
  */
 
-import com from "./modules/common";
-import home from "./modules/home";
+import com from './modules/common';
+import home from './modules/home';
 
-const debug = process.env.NODE_ENV !== "production";
+const debug = process.env.NODE_ENV !== 'production';
 Vue.use(Vuex);
 Vue.config.debug = debug;
 
@@ -24,8 +24,8 @@ export default new Vuex.Store({
   modules: {
     // 这个名字与 getter 获取 [state] 有关
     com,
-    home
+    home,
   },
   plugins: [createPersistedState()],
-  strict: debug
+  strict: debug,
 });

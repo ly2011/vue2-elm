@@ -8,7 +8,7 @@
     "start": "npm run dev",
     "dev": "webpack-dev-server --config build/webpack.config.js --history-api-fallback --devtool eval --colors --inline --hot --content-base src",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.production.js",
-    "fix": "eslint src/**/*.vue src/**/*.js server/**/*.js --fix",
+    "fix": "eslint src/**/*.js server/**/*.js --fix",
     "server": "nodemon server/index.js",
     "publish": "npm run build",
     "precommit": "lint-staged",
@@ -146,6 +146,6 @@
     "vuex-router-sync": "^4.2.0"
   },
   "lint-staged": {
-    "src/**/*.js": ["prettier --write", "git add"]
+    "src/**/*.js": ["eslint src/**/*.js server/**/*.js --fix", "git add"]
   }
 }

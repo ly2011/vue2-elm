@@ -2,26 +2,26 @@
  * api配置
  */
 
-import axios from "axios";
+import axios from 'axios';
 
 const baseURL =
-  process.env.NODE_ENV !== "production"
-    ? "http://127.0.0.1:3000"
-    : "http://127.0.0.1:3000";
+  process.env.NODE_ENV !== 'production'
+    ? 'http://127.0.0.1:3000'
+    : 'http://127.0.0.1:3000';
 
 const axios_config = {
   baseURL: baseURL,
   // 请求头信息
   headers: {
     // "X-Requested-With": "XMLHttpRequest", // (这个会引起OPTIONS请求)
-    "Content-Type": "application/x-www-form-urlencoded"
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
   withCredentials: true,
   timeout: 25000,
   proxy: {
-    host: "127.0.0.1",
-    port: 3000
-  }
+    host: '127.0.0.1',
+    port: 3000,
+  },
 };
 
 const instance = axios.create(axios_config);
@@ -62,5 +62,5 @@ export default {
         console.error(err);
         cb && cb(err);
       });
-  }
+  },
 };

@@ -1,20 +1,20 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from 'vue';
+import Router from 'vue-router';
 
-const Index = () => import("../views/index");
-const Login = () => import("../views/login");
-const Search = () => import("../views/search");
-const Player = () => import("../views/player");
+const Index = () => import('../views/index');
+const Login = () => import('../views/login');
+const Search = () => import('../views/search');
+const Player = () => import('../views/player');
 
 Vue.use(Router);
 
 const router = new Router({
   // mode: 'history',
-  mode: "hash",
+  mode: 'hash',
   base: __dirname,
   scrollBehavior(to, from, savedPosition) {
     // 只在history模式下生效
-    console.log("from: ", from);
+    console.log('from: ', from);
     if (savedPosition) {
       return savedPosition;
     } else {
@@ -26,30 +26,30 @@ const router = new Router({
   },
   routes: [
     {
-      path: "/",
-      redirect: "/index"
+      path: '/',
+      redirect: '/index',
     },
     {
-      path: "/index",
-      name: "index",
-      component: Index
+      path: '/index',
+      name: 'index',
+      component: Index,
     },
     {
-      path: "/login",
-      name: "login",
-      component: Login
+      path: '/login',
+      name: 'login',
+      component: Login,
     },
     {
-      path: "/search",
-      name: "search",
-      component: Search
+      path: '/search',
+      name: 'search',
+      component: Search,
     },
     {
-      path: "/player",
-      name: "player",
-      component: Player
-    }
-  ]
+      path: '/player',
+      name: 'player',
+      component: Player,
+    },
+  ],
 });
 
 router.afterEach((from, to) => {
