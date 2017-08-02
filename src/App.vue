@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-scroll="">
+  <div id="app" v-scroll>
     <div class="block">
       <router-link to="/">首页</router-link>
       <router-link to="/login">登录</router-link>
@@ -17,21 +17,15 @@
 <script>
 export default {
   name: 'app',
-
   computed: {},
-  mounted() {
-
-  },
-  methods: {
-
-  }
-}
+  mounted() {},
+  methods: {},
+};
 </script>
 <style lang="scss">
 @import 'assets/scss/base.scss';
 @import 'assets/scss/mixin.scss';
 @import 'assets/scss/variables.scss';
-// @import url('http://at.alicdn.com/t/font_wmjemf1ohe0cnmi.css');
 
 .router-fade-enter-active,
 .router-fade-leave-active {

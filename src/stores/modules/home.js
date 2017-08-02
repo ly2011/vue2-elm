@@ -7,7 +7,7 @@ import * as types from '../mutation-types';
 const state = {
   banner: [],
   nowplay: [],
-  coming: [],
+  coming: []
 };
 
 const actions = {
@@ -40,13 +40,13 @@ const actions = {
       }
       commit(types.COM_LOADING_STATUS, false);
     });
-  },
+  }
 };
 
 const getters = {
   getBannerList: state => state.banner,
   getNowPlaying: state => state.nowplay,
-  getComingSoon: state => state.coming,
+  getComingSoon: state => state.coming
 };
 
 const mutations = {
@@ -58,12 +58,12 @@ const mutations = {
   },
   [types.HOME_GET_COMINGSOON_LIST](state, res) {
     state.coming = res.films;
-  },
+  }
 };
 
 export default {
   state,
   actions,
   getters,
-  mutations,
+  mutations
 };

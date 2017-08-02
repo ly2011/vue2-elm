@@ -27,29 +27,29 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/index',
+      redirect: '/index'
     },
     {
       path: '/index',
       name: 'index',
-      component: Index,
+      component: Index
     },
     {
       path: '/login',
       name: 'login',
-      component: Login,
+      component: Login
     },
     {
       path: '/search',
       name: 'search',
-      component: Search,
+      component: Search
     },
     {
       path: '/player',
       name: 'player',
-      component: Player,
-    },
-  ],
+      component: Player
+    }
+  ]
 });
 
 router.afterEach((from, to) => {

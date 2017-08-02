@@ -6,19 +6,19 @@ import * as types from '../mutation-types';
 
 const state = {
   title: '',
-  loading: 0,
+  loading: 0
 };
 
 const actions = {
   comConf({ commit }, settings) {
     commit(types.COM_CONF, settings);
-  },
+  }
 };
 
 const getters = {
   conConf: state => state,
   loading: state => state.loading,
-  title: state => state.title,
+  title: state => state.title
 };
 
 const mutations = {
@@ -34,12 +34,12 @@ const mutations = {
     state.loading = status ? ++state.loading : --state.loading;
 
     console.log('loading_num: ', state.loading);
-  },
+  }
 };
 
 export default {
   state,
   actions,
   getters,
-  mutations,
+  mutations
 };

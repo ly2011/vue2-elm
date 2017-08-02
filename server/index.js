@@ -16,9 +16,9 @@ app.use(
       credentials: true,
       maxAge: 86400000,
       methods: 'OPTIONS, GET, PUT, POST, DELETE',
-      headers: 'x-requested-with, accept, origin, content-type',
-    }),
-  ),
+      headers: 'x-requested-with, accept, origin, content-type'
+    })
+  )
 );
 
 router.use(async (ctx, next) => {
@@ -44,7 +44,7 @@ router.get('/billboard/home', async (ctx, next) => {
   params = qs.stringify(params);
   const res = await fetch(`${baseURL}/billboard/home?${params}`, {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' }
   });
   const json = await res.json();
   ctx.body = json;
@@ -58,8 +58,8 @@ router.get('/film/now-playing', async (ctx, next) => {
     `${baseURL}/film/now-playing?_t=${new Date() * 1}&page=1&count=5`,
     {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    },
+      headers: { 'Content-Type': 'application/json' }
+    }
   );
   const json = await res.json();
   ctx.body = json;
@@ -73,8 +73,8 @@ router.get('/film/coming-soon', async (ctx, next) => {
     `${baseURL}/film/coming-soon?_t=${new Date() * 1}&page=1&count=3`,
     {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    },
+      headers: { 'Content-Type': 'application/json' }
+    }
   );
   const json = await res.json();
   ctx.body = json;

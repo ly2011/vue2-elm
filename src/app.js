@@ -22,12 +22,12 @@ Vue.directive('scroll', {
       const fnc = binding.value;
       fnc && fnc(el);
     });
-  },
+  }
 });
 
 const app = new Vue({
   router,
   store,
-  render: h => h(App),
+  render: h => h(App)
 });
 export { app, router };

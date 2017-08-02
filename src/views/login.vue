@@ -68,8 +68,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import BScroll from 'better-scroll'
+import axios from 'axios';
+import BScroll from 'better-scroll';
 export default {
   name: 'login',
   data() {

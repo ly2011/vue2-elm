@@ -18,7 +18,7 @@ module.exports = {
       'error',
       {
         singleQuote: true,
-        trailingComma: 'all',
+        trailingComma: 'none',
         bracketSpacing: true,
         parser: 'babylon'
       }

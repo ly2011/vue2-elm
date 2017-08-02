@@ -24,8 +24,8 @@ export default new Vuex.Store({
   modules: {
     // 这个名字与 getter 获取 [state] 有关
     com,
-    home,
+    home
   },
   plugins: [createPersistedState()],
-  strict: debug,
+  strict: debug
 });
