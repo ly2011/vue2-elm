@@ -9,7 +9,6 @@
   </div>
 </template>
 <script>
-
 export default {
   name: 'app',
 
@@ -26,7 +25,7 @@ export default {
 @import 'assets/scss/base.scss';
 @import 'assets/scss/mixin.scss';
 @import 'assets/scss/variables.scss';
-@import url('http://at.alicdn.com/t/font_wmjemf1ohe0cnmi.css');
+// @import url('http://at.alicdn.com/t/font_wmjemf1ohe0cnmi.css');
 
 .router-fade-enter-active,
 .router-fade-leave-active {

@@ -176,7 +176,10 @@ module.exports = {
       {
         test: /\.css$/,
         include: [nodeModulesPath],
-        use: ['style-loader', 'css-loader?minimize', 'postcss-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use:['css-loader', 'postcss-loader']
+        })
 
       },
       {
@@ -216,7 +219,10 @@ module.exports = {
       {
         test: /\.(scss|sass)$/,
         include: [nodeModulesPath],
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use:['css-loader', 'postcss-loader', 'sass-loader']
+        })
 
       },
       {
@@ -256,7 +262,10 @@ module.exports = {
       {
         test: /\.less$/,
         include: [nodeModulesPath],
-        use:['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use:['css-loader', 'postcss-loader', 'less-loader']
+        })
 
       },
       {
@@ -324,6 +333,7 @@ module.exports = {
   plugins: [
     // 作用域提升，减少代码量，加快代码运行速度（webpack 3.0）
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
         context: rootPath,

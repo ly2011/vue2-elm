@@ -7,7 +7,8 @@
   "plugins": [["component", [
     {
       "libraryName": "element-ui",
-      "styleLibraryName": "theme-default"
+      "styleLibraryName": "theme-default",
+      "style": true
     }
   ]]],
   "comments": false

@@ -102,6 +102,14 @@
         <el-checkbox label="选中且禁用" disabled></el-checkbox>
       </el-checkbox-group>
     </div>
+
+    <div class="block">
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+      <div style="margin: 15px 0;"></div>
+      <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange" :min="1" :max="3">
+        <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+      </el-checkbox-group>
+    </div>
   </div>
 </template>
 <script>
@@ -129,6 +137,8 @@ Vue.use(RadioGroup)
 Vue.use(RadioButton)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
+
+const cityOptions = ['上海', '北京', '广州', '深圳']
 export default {
   name: 'index',
   data() {
@@ -141,7 +151,11 @@ export default {
       radio3: '上海',
       checked: true,
       checked2: false,
-      checkList: ['选中且禁用', '复选框 A']
+      checkList: ['选中且禁用', '复选框 A'],
+      checkAll: true,
+      checkedCities: ['广州', '深圳'],
+      cities: cityOptions,
+      isIndeterminate: true
     }
   },
   mounted() {
@@ -167,6 +181,15 @@ export default {
     }),
     changeRadio (value) {
       console.log('change_radio: ', value)
+    },
+    handleCheckAllChange (event) {
+      this.checkedCities = event.target.checked ? cityOptions : []
+      this.isIndeterminate = false
+    },
+    handleCheckedCitiesChange (value) {
+      let checkedCount = value.length
+      this.checkAll = checkedCount === this.cities.length
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length
     }
   }
 

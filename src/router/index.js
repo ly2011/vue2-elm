@@ -3,10 +3,8 @@ import Router from 'vue-router'
 
 import Index from '../views/index'
 import Login from '../views/login'
-import My from '../views/index/my'
-import songList from '../views/index/discover/songList'
-import Recommend from '../views/index/discover/recommend'
-import Discover from '../views/index/discover'
+import Search from '../views/search'
+import Player from '../views/player'
 
 Vue.use(Router)
 
@@ -28,52 +26,28 @@ const router = new Router({
   },
   routes: [
     {
-      path: '',
-      // name: 'index',
+      path: '/',
       redirect: '/index'
     },
     {
       path: '/index',
       name: 'index',
-      component: Index,
-      children: [
-        {
-          path: 'my',
-          name: 'my',
-          component: My,
-          meta: {
-            keepAlive: true
-          }
-        },
-        {
-          path: 'discover',
-          name: 'discover',
-          component: Discover,
-          children: [
-            {
-              path: 'songList',
-              name: 'songList',
-              component: songList,
-              meta: {
-                keepAlive: true
-              }
-            },
-            {
-              path: 'recommend',
-              name: 'recommend',
-              component: Recommend,
-              meta: {
-                keepAlive: true
-              }
-            }
-          ]
-        }
-      ]
+      component: Index
     },
     {
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search
+    },
+    {
+      path: '/player',
+      name: 'player',
+      component: Player
     }
   ]
 })
