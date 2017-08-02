@@ -21,13 +21,13 @@ const faviconPath = resolve('src/assets/favicon.ico');
 const developmentConf = merge(baseConfig, {
   entry: {
     index: resolve('src/index.js'),
-    vendor: [
-      'babel-polyfill'
-    ]
+    vendor: ['babel-polyfill']
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.NODE_ENV': JSON.stringify(
+        process.env.NODE_ENV || 'development'
+      ),
       'process.env.VUE_ENV': '"client"'
     }),
     new webpack.HotModuleReplacementPlugin(),

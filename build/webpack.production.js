@@ -1,49 +1,49 @@
-const webpack = require('webpack')
-const path = require('path')
-const merge = require('webpack-merge')
-const baseConfig = require('./webpack.base')
+const webpack = require('webpack');
+const path = require('path');
+const merge = require('webpack-merge');
+const baseConfig = require('./webpack.base');
 // const getEntries = require('./getEntries')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Visualizer = require('webpack-visualizer-plugin')
-const CleanPlugin = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const SWPrecachePlugin = require('sw-precache-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
+const CleanPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const SWPrecachePlugin = require('sw-precache-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 // const WebpackStrip = require('strip-loader') const BannerPlugin =
 // webpack.BannerPlugin
 
 /**
  * banners
  */
-const json = require('../package.json')
+const json = require('../package.json');
 
-const version = json.version.split('.')
-const v = `${version.shift()}.${version.join('')}`.replace(/0+$/, '0')
-const now = new Date()
+const version = json.version.split('.');
+const v = `${version.shift()}.${version.join('')}`.replace(/0+$/, '0');
+const now = new Date();
 const snow = `${now.getFullYear()}-${now.getMonth() +
-  1}-${now.getDate()}:${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+  1}-${now.getDate()}:${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
-const productionGzip = true
-const productionGzipExtensions = ['js', 'css']
+const productionGzip = true;
+const productionGzipExtensions = ['js', 'css'];
 
-function resolve (dir = '.') {
-  return path.join(__dirname, '..', dir)
+function resolve(dir = '.') {
+  return path.join(__dirname, '..', dir);
 }
 /**
  * 目录/路径
  */
-const srcPath = resolve('src')
-const buildPath = resolve('dist')
-const faviconPath = resolve('src/assets/favicon.ico')
+const srcPath = resolve('src');
+const buildPath = resolve('dist');
+const faviconPath = resolve('src/assets/favicon.ico');
 
 const productionConf = merge(baseConfig, {
   entry: {
-    index: resolve('src/index.js'),
+    index: resolve('src/index.js')
     //  vendor: [
     //   'vue',
     //   'vue-router',
@@ -168,15 +168,13 @@ const productionConf = merge(baseConfig, {
       // minChunks: Infinity, // 提取所有entry共同依赖的模块
 
       name: 'vendor',
-      minChunks: function (module, count) {
+      minChunks: function(module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
-        )
+          module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0
+        );
       }
     }),
     // extract webpack runtime and module manifest to its own file in order to
@@ -185,20 +183,18 @@ const productionConf = merge(baseConfig, {
     // 每次运行webpack清理上一次的文件夹
     new CleanPlugin([buildPath]),
     new webpack.NamedModulesPlugin(),
-        // copy static
-    new CopyWebpackPlugin([{
-      from: srcPath + '/static',
-      to:  buildPath+ '/static',
-      ignore: ['.*']
-    }]),
+    // copy static
+    new CopyWebpackPlugin([
+      {
+        from: srcPath + '/static',
+        to: buildPath + '/static',
+        ignore: ['.*']
+      }
+    ]),
     new CompressionWebpackPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
-      test: new RegExp(
-        '\\.(' +
-        productionGzipExtensions.join('|') +
-        ')$'
-      ),
+      test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
       threshold: 10240,
       minRatio: 0.8
     }),
@@ -211,17 +207,17 @@ const productionConf = merge(baseConfig, {
       // navigateFallback: PUBLIC_PATH + 'index.html',
       staticFileGlobsIgnorePatterns: [/index\.html$/, /\.map$/]
     }),
-    function () {
+    function() {
       return this.plugin('done', stats => {
         // var content = JSON.stringify(stats.toJson().assetsByChunkName, null, 2)
-        console.log(`版本是：${JSON.stringify(stats.toJson().hash)}`)
-      })
+        console.log(`版本是：${JSON.stringify(stats.toJson().hash)}`);
+      });
     },
     new webpack.BannerPlugin(`built in ${snow} version ${v} by luyun\n`),
     // new ExtractTextPlugin({   filename: 'css/[name].[hash].css',   allChunks:
     // true }), 打包分析
     new Visualizer({ filename: './statistics.html' })
   ]
-})
+});
 
-module.exports = productionConf
+module.exports = productionConf;
