@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Index from '../views/index'
-import Login from '../views/login'
-import Search from '../views/search'
-import Player from '../views/player'
+const Index = () => import('../views/index')
+const Login = () => import('../views/login')
+const Search = () => import('../views/search')
+const Player = () => import('../views/player')
 
 Vue.use(Router)
 
