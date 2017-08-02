@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import BScroll from 'better-scroll'
 export default {
   name: 'login',
@@ -77,7 +78,7 @@ export default {
     }
   },
   created() {
-    axios.get('static/data.json').then((res) => {
+    axios.get('/static/data.json').then((res) => {
       this.goods = res.data.goods
       this.$nextTick(() => {
         this._initScroll(); // 初始化scroll

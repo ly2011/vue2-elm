@@ -9,6 +9,9 @@ const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Visualizer = require('webpack-visualizer-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 const OfflinePlugin = require('offline-plugin')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 // const WebpackStrip = require('strip-loader') const BannerPlugin =
@@ -25,6 +28,9 @@ const now = new Date()
 const snow = `${now.getFullYear()}-${now.getMonth() +
   1}-${now.getDate()}:${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
 
+const productionGzip = true
+const productionGzipExtensions = ['js', 'css']
+
 function resolve (dir = '.') {
   return path.join(__dirname, '..', dir)
 }
@@ -38,16 +44,13 @@ const faviconPath = resolve('src/assets/favicon.ico')
 const productionConf = merge(baseConfig, {
   entry: {
     index: resolve('src/index.js'),
-    vendor: [
-      // 'react',
-      // 'react-dom',
-      // 'react-router'
-      'vue',
-      'vue-router',
-      'vuex',
-      'vuex-router-sync',
-      'babel-polyfill'
-    ]
+    //  vendor: [
+    //   'vue',
+    //   'vue-router',
+    //   'vuex',
+    //   'vuex-router-sync',
+    //   'babel-polyfill'
+    // ]
   },
   // output: {   path: buildPath,   publicPath: '/',   filename:
   // 'js/[name].[hash].js',   chunkFilename: 'js/[name].[hash].js' },
@@ -135,7 +138,7 @@ const productionConf = merge(baseConfig, {
     // pwa
     new HtmlWebpackPlugin({
       // 根据模板插入css/js等生成最终HTML
-      title: 'vue2-163music',
+      title: 'vue2-elm',
       favicon: faviconPath, // favicon路径
       filename: 'index.html',
       template: resolve('src/index.html'),
@@ -161,8 +164,20 @@ const productionConf = merge(baseConfig, {
       chunksSortMode: 'dependency'
     }),
     new CommonsChunkPlugin({
-      name: ['vendor'], // 将公共模块提取, 参照 entry
-      minChunks: Infinity // 提取所有entry共同依赖的模块
+      //  name: ['vendor'], // 将公共模块提取, 参照 entry
+      // minChunks: Infinity, // 提取所有entry共同依赖的模块
+
+      name: 'vendor',
+      minChunks: function (module, count) {
+        // any required modules inside node_modules are extracted to vendor
+        return (
+          module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0
+        )
+      }
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
@@ -170,6 +185,32 @@ const productionConf = merge(baseConfig, {
     // 每次运行webpack清理上一次的文件夹
     new CleanPlugin([buildPath]),
     new webpack.NamedModulesPlugin(),
+        // copy static
+    new CopyWebpackPlugin([{
+      from: srcPath + '/static',
+      to:  buildPath+ '/static',
+      ignore: ['.*']
+    }]),
+    new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp(
+        '\\.(' +
+        productionGzipExtensions.join('|') +
+        ')$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    // auto generate service worker
+    new SWPrecachePlugin({
+      cacheId: 'vue-elm',
+      filename: 'service-worker.js',
+      minify: true,
+      dontCacheBustUrlsMatching: /./,
+      // navigateFallback: PUBLIC_PATH + 'index.html',
+      staticFileGlobsIgnorePatterns: [/index\.html$/, /\.map$/]
+    }),
     function () {
       return this.plugin('done', stats => {
         // var content = JSON.stringify(stats.toJson().assetsByChunkName, null, 2)

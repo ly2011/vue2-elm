@@ -145,7 +145,10 @@ export default {
     }
   },
   mounted() {
-
+    if (!this.banner.length) {
+      this.getBannerList()
+    }
+    this.comConf({title: '战狼-2'})
   },
   computed: {
     ...mapGetters({
@@ -158,7 +161,8 @@ export default {
     ...mapActions({
       getBannerList: 'getBannerList',
       getNowPlaying: 'getNowPlaying',
-      getComingSoon: 'getComingSoon'
+      getComingSoon: 'getComingSoon',
+      comConf: 'comConf'
 
     }),
     changeRadio (value) {

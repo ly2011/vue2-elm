@@ -11,7 +11,8 @@ import Discover from '../views/index/discover'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
+  // mode: 'history',
+  mode: 'hash',
   base: __dirname,
   scrollBehavior (to, from, savedPosition) {
     // 只在history模式下生效

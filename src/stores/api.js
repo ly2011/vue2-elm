@@ -13,7 +13,7 @@ const axios_config = {
   baseURL: baseURL,
   // 请求头信息
   headers: {
-    "X-Requested-With": "XMLHttpRequest",
+    // "X-Requested-With": "XMLHttpRequest", // (这个会引起OPTIONS请求)
     "Content-Type": "application/x-www-form-urlencoded"
   },
   withCredentials: true,

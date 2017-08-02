@@ -6,8 +6,19 @@ const customProperties = require('postcss-custom-properties');
 const pxtorem = require('postcss-pxtorem');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var isPro = process.env.NODE_ENV === 'production'
+
 function resolve(dir = '.') {
   return path.join(__dirname, '..', dir);
+}
+
+const vueLoaderConfig = {
+    esModule: true,
+    cssModules: {
+        localIdentName: isPro ? '[hash:base64:6]' : '[local]--[hash:base64:5]',
+        camelCase: true
+    },
+
 }
 
 const rootPath = resolve('.');
@@ -27,7 +38,7 @@ module.exports = {
     chunkFilename: 'js/[name]__[hash:16].bundle.js'
   },
   resolve: {
-    modules: ['node_modules', nodeModulesPath],
+    modules: ['node_modules', nodeModulesPath, srcPath],
     enforceExtension: false,
     enforceModuleExtension: false,
     extensions: [
@@ -46,6 +57,8 @@ module.exports = {
       '.tsx'
     ],
     alias: {
+      'vue$': 'vue/dist/vue.runtime.esm.js',
+      '~root': rootPath,
       SRC: resolve('src'),
       ASSETS: resolve('src/assets'),
       COMPONENTS: resolve('src/components'),
@@ -87,7 +100,13 @@ module.exports = {
       {
         test: /\.vue$/,
         exclude: /node_modules/,
-        use: ['vue-loader']
+        use: [
+          {
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+          }
+        ]
+        // use: ['vue-loader']
       },
       {
         test: /\.css$/,
@@ -157,7 +176,8 @@ module.exports = {
       {
         test: /\.css$/,
         include: [nodeModulesPath],
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+        use: ['style-loader', 'css-loader?minimize', 'postcss-loader']
+
       },
       {
         test: /\.(scss|sass)$/,
@@ -197,6 +217,7 @@ module.exports = {
         test: /\.(scss|sass)$/,
         include: [nodeModulesPath],
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+
       },
       {
         test: /\.less$/,
@@ -235,7 +256,8 @@ module.exports = {
       {
         test: /\.less$/,
         include: [nodeModulesPath],
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+        use:['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+
       },
       {
         test: /\.(js|jsx)$/,
@@ -253,7 +275,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
         include: [srcPath],
         exclude: nodeModulesPath,
         use: [
@@ -284,14 +306,15 @@ module.exports = {
         ]
       },
       {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         include: [srcPath, nodeModulesPath],
         use: [
           {
             loader: 'file-loader',
             options: {
               hash: 'sha512',
-              digest: 'hex'
+              digest: 'hex',
+              name: 'fonts/[name].[ext]'
             }
           }
         ]
@@ -299,6 +322,8 @@ module.exports = {
     ]
   },
   plugins: [
+    // 作用域提升，减少代码量，加快代码运行速度（webpack 3.0）
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
         context: rootPath,
@@ -307,7 +332,6 @@ module.exports = {
             cls(),
             cssnext({ flexbox: true, browsers: ['last 10 versions'] }),
             customProperties()
-            // pxtorem({rootValue: 100, propWhiteList: []})
           ];
         }
       },
@@ -316,14 +340,11 @@ module.exports = {
       },
       vue: {
         loaders: {
-          // postcss: [require('autoprefixer')({flexbox: true, browsers: ['last 3
-          // versions']})],
           postcss() {
             return [
               customMedia(),
               cssnext({ flexbox: true, browsers: ['last 10 versions'] }),
               customProperties()
-              // pxtorem({rootValue: 100, propWhiteList: []})
             ];
           },
           css: ExtractTextPlugin.extract({

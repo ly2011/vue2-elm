@@ -50,8 +50,11 @@
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.16",
     "compression": "^1.6.2",
+    "compression-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
+    "cssnano": "^3.10.0",
     "element-theme-default": "^1.4.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -99,6 +102,7 @@
     "source-map-loader": "^0.2.1",
     "strip-loader": "^0.1.2",
     "style-loader": "^0.13.0",
+    "sw-precache-webpack-plugin": "^0.11.4",
     "typed-css-modules": "^0.2.0",
     "typed-css-modules-loader": "^0.0.9",
     "typescript": "^2.3.4",
@@ -145,6 +149,7 @@
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vuex": "^2.3.1",
+    "vuex-persistedstate": "^2.0.0",
     "vuex-router-sync": "^4.2.0"
   },
   "lint-staged": {

@@ -23,7 +23,8 @@ const getters = {
 
 const mutations = {
   [types.COM_CONF](state, settings) {
-    state = {...state, settings}
+    // state = {...state, settings}
+    state = Object.assign(state, settings)
   },
   [types.COM_LOADING_STATUS](state, status) {
     console.log('loading: ', status);
