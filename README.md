@@ -1,8 +1,8 @@
 ## ERROR
 
-- 2017-08-02
+### 2017-08-02
 
-引入 `element-ui` 后，对 `element-ui` 没法提取外链css
+- 引入 `element-ui` 后，对 `element-ui` 没法提取外链css
 
 解决方案：
 
@@ -11,6 +11,15 @@ use: ExtractTextPlugin.extract({
   fallback: 'style-loader',
   use:['css-loader', 'postcss-loader'] // 原来把 `style-loader` 也写在下面了
 })
+
+```
+
+- 解决webpack2+ `import` 懒加载问题
+
+```
+
+const Index = () => import('../views/index')
+
 ```
 
 参考：

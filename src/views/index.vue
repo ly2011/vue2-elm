@@ -2,8 +2,8 @@
   <div class="parent-container">
     <el-button @click="visible = true; show=!show">按钮</el-button>
     <!-- <el-dialog v-model="visible" title="Hello World">
-          <p>欢迎使用 Element</p>
-        </el-dialog> -->
+                <p>欢迎使用 Element</p>
+              </el-dialog> -->
     <div style="display: flex; margin-top: 20px; height: 100px">
       <transition name="el-fade-in-linear">
         <div v-show="show" class="transition-box">.el-fade-in-linear</div>
@@ -110,6 +110,18 @@
         <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
       </el-checkbox-group>
     </div>
+
+    <div class="block">
+      <el-input v-model="input" placeholder="请输入内容" :disabled="false" icon="search" :on-icon-click="handleIconClick"></el-input>
+    </div>
+
+    <div class="block">
+      <el-input type="textarea" :row="2" placeholder="请输入内容" v-model="textarea"></el-input>
+      <div style="margin: 20px 0;"></div>
+      <el-input type="textarea" autosize placeholder="请输入内容" v-model="textarea2"></el-input>
+      <div style="margin: 20px 0;"></div>
+      <el-input type="textarea" auto-size="{minRows: 2, maxRows: 4}" placeholder="请输入内容" v-model="textarea3"></el-input>
+    </div>
   </div>
 </template>
 <script>
@@ -125,7 +137,9 @@ import {
   RadioGroup,
   RadioButton,
   Checkbox,
-  CheckboxGroup
+  CheckboxGroup,
+  Input,
+  InputNumber
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Dialog)
@@ -137,6 +151,8 @@ Vue.use(RadioGroup)
 Vue.use(RadioButton)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
+Vue.use(Input)
+Vue.use(InputNumber)
 
 const cityOptions = ['上海', '北京', '广州', '深圳']
 export default {
@@ -155,14 +171,18 @@ export default {
       checkAll: true,
       checkedCities: ['广州', '深圳'],
       cities: cityOptions,
-      isIndeterminate: true
+      isIndeterminate: true,
+      input: '',
+      textarea: '',
+      textarea2: '',
+      textarea3: ''
     }
   },
   mounted() {
     if (!this.banner.length) {
       this.getBannerList()
     }
-    this.comConf({title: '战狼-2'})
+    this.comConf({ title: '战狼-2' })
   },
   computed: {
     ...mapGetters({
@@ -179,17 +199,20 @@ export default {
       comConf: 'comConf'
 
     }),
-    changeRadio (value) {
+    changeRadio(value) {
       console.log('change_radio: ', value)
     },
-    handleCheckAllChange (event) {
+    handleCheckAllChange(event) {
       this.checkedCities = event.target.checked ? cityOptions : []
       this.isIndeterminate = false
     },
-    handleCheckedCitiesChange (value) {
+    handleCheckedCitiesChange(value) {
       let checkedCount = value.length
       this.checkAll = checkedCount === this.cities.length
       this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length
+    },
+    handleIconClick(event) {
+      console.log(event)
     }
   }
 
@@ -199,6 +222,7 @@ export default {
 .parent-container {
   margin: 8px;
 }
+
 .transition-box {
   margin-bottom: 10px;
   width: 200px;
