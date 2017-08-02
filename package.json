@@ -1,8 +1,8 @@
 {
-  "name": "react-weather",
+  "name": "vue2-elm",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "src/index.js",
   "scripts": {
     "clean": "rimraf node_modules dist && npm cache clean && cnpm cache clean",
     "start": "npm run dev",
@@ -14,24 +14,14 @@
     "precommit": "lint-staged",
     "et": "et -i"
   },
-  "keywords": [
-    "vue",
-    "vuex",
-    "vue-router",
-    "webpack3"
-  ],
+  "keywords": ["vue", "vuex", "vue-router", "webpack3"],
   "author": "ly2011",
   "license": "ISC",
   "engines": {
     "node": ">=6.5",
     "npm": ">=3.10"
   },
-  "browserslist": [
-    ">1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "not ie < 9"
-  ],
+  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
   "devDependencies": {
     "awesome-typescript-loader": "^3.1.3",
     "axios": "^0.16.1",
@@ -64,6 +54,7 @@
     "eslint-plugin-html": "^3.1.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-vue-libs": "^1.2.0",
     "expect": "^1.12.0",
@@ -90,6 +81,7 @@
     "postcss-loader": "^0.7.0",
     "postcss-pxtorem": "^4.0.1",
     "prettier": "^1.5.3",
+    "prettier-eslint": "^6.4.2",
     "react-hot-loader": "^1.3.0",
     "react-test-renderer": "^15.4.2",
     "react-transform-hmr": "^1.0.4",
@@ -154,9 +146,6 @@
     "vuex-router-sync": "^4.2.0"
   },
   "lint-staged": {
-    "src/**/*.(js|vue)": [
-      "prettier --write",
-      "git add"
-    ]
+    "src/**/*.js": ["prettier --write", "git add"]
   }
 }

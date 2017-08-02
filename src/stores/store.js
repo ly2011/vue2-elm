@@ -7,7 +7,7 @@
 
 import Vue from "vue";
 import Vuex from "vuex";
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from "vuex-persistedstate";
 
 /**
  * 导入各个模块的 [初始状态] 和 [mutations]

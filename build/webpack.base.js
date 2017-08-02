@@ -6,26 +6,26 @@ const customProperties = require('postcss-custom-properties');
 const pxtorem = require('postcss-pxtorem');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var isPro = process.env.NODE_ENV === 'production'
+var isPro = process.env.NODE_ENV === 'production';
 
 function resolve(dir = '.') {
   return path.join(__dirname, '..', dir);
 }
 
 const vueLoaderConfig = {
-    esModule: true,
-    cssModules: {
-        localIdentName: isPro ? '[hash:base64:6]' : '[local]--[hash:base64:5]',
-        camelCase: true
-    },
-
-}
+  esModule: true,
+  cssModules: {
+    localIdentName: isPro ? '[hash:base64:6]' : '[local]--[hash:base64:5]',
+    camelCase: true
+  }
+};
 
 const rootPath = resolve('.');
 const srcPath = resolve('src');
 const faviconPath = resolve('src/assets/favicon.ico');
 const buildPath = resolve('dist');
 const nodeModulesPath = resolve('node_modules');
+const eslintConfigPath = rootPath + '.eslintrc.js';
 
 module.exports = {
   context: rootPath,
@@ -57,7 +57,7 @@ module.exports = {
       '.tsx'
     ],
     alias: {
-      'vue$': 'vue/dist/vue.runtime.esm.js',
+      vue$: 'vue/dist/vue.runtime.esm.js',
       '~root': rootPath,
       SRC: resolve('src'),
       ASSETS: resolve('src/assets'),
@@ -178,9 +178,8 @@ module.exports = {
         include: [nodeModulesPath],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use:['css-loader', 'postcss-loader']
+          use: ['css-loader', 'postcss-loader']
         })
-
       },
       {
         test: /\.(scss|sass)$/,
@@ -221,9 +220,8 @@ module.exports = {
         include: [nodeModulesPath],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use:['css-loader', 'postcss-loader', 'sass-loader']
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
-
       },
       {
         test: /\.less$/,
@@ -264,9 +262,8 @@ module.exports = {
         include: [nodeModulesPath],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use:['css-loader', 'postcss-loader', 'less-loader']
+          use: ['css-loader', 'postcss-loader', 'less-loader']
         })
-
       },
       {
         test: /\.(js|jsx)$/,
@@ -346,6 +343,7 @@ module.exports = {
         }
       },
       eslint: {
+        configFile: eslintConfigPath,
         formatter: require('eslint-friendly-formatter')
       },
       vue: {
