@@ -239,17 +239,6 @@
     </div>
 
     <div class="block">
-      <span class="demonstration">默认click触发子菜单</span>
-      <el-cascader
-      :options="options4"
-      v-model="selectedOptions"
-      @change="handleChange"
-      >
-
-      </el-cascader>
-    </div>
-
-    <div class="block">
       <el-switch
         v-model="switch1"
         on-text=""
@@ -292,6 +281,24 @@
       >
       </el-slider>
     </div>
+    <div class="block">
+      <el-rate
+      v-model="rate1"
+      show-text
+      text-color="#ff9900"
+      :max="5"
+      >
+      </el-rate>
+    </div>
+
+    <div class="block">
+      <el-transfer
+      filterable
+      v-model="transferValue"
+      filter-placeholder="请输入选项"
+      :data="transferData">
+      </el-transfer>
+    </div>
   </div>
 </template>
 <script>
@@ -317,7 +324,9 @@ import {
   Cascader,
   Switch,
   Tooltip,
-  Slider
+  Slider,
+  Rate,
+  Transfer
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Dialog)
@@ -339,7 +348,8 @@ Vue.use(Cascader)
 Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Slider)
-
+Vue.use(Rate)
+Vue.use(Transfer)
 Vue.component('my-item-zh', {
   functional: true,
   render: function (h, ctx) {
@@ -357,7 +367,20 @@ Vue.component('my-item-zh', {
 const cityOptions = ['上海', '北京', '广州', '深圳']
 export default {
   data() {
+    const generateData=()=> {
+      const data = []
+      for (let i=1;i<15;i++) {
+        data.push({
+          key: i,
+          label: `备选项 ${i}`,
+          disabled: i % 4 === 0
+        })
+      }
+      return data
+    }
     return {
+      transferData: generateData(),
+      transferValue: [1, 4],
       visible: false,
       show: false,
       radio: '1',
@@ -658,12 +681,13 @@ export default {
         switch1: true,
         switch2: true,
         switch3: '100',
-        slider1: 0
+        slider1: 0,
+        rate1: 3.8,
     }
   },
   mounted() {
     if (!this.banner.length) {
-      this.getBannerList()
+      // this.getBannerList()
     }
     this.comConf({ title: '战狼-2' })
     this.restaurants = this.loadAll()
