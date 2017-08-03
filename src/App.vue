@@ -19,7 +19,7 @@ export default {
   name: 'app',
   computed: {},
   mounted() {},
-  methods: {},
+  methods: {}
 };
 </script>
 <style lang="scss">
