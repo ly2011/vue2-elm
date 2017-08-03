@@ -37,10 +37,6 @@ export default {
   opacity: 0;
 }
 
-.second-container {
-  min-height: 100vh;
-  min-width: 100vw;
-}
 div.block {
   margin-bottom: 20px;
 }

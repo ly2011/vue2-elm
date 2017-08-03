@@ -13,7 +13,7 @@
     "publish": "npm run build",
     "precommit": "lint-staged",
     "et": "et -i",
-    "fix-vue": "eslint src/App.vue --no-ignore --fix"
+    "fix-vue": "eslint src/App.vue --fix"
   },
   "keywords": [
     "vue",

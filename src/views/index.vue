@@ -1,6 +1,6 @@
 <template>
   <div class="parent-container">
-    <el-button @click="visible = true; show=!show">按钮</el-button>
+    <el-button @click="show=!show">按钮</el-button>
     <!-- <el-dialog v-model="visible" title="Hello World">
                 <p>欢迎使用 Element</p>
               </el-dialog> -->
@@ -200,6 +200,43 @@
     <div class="block">
       <el-input-number v-model="num1" @change="handleChange" :min="1" :max="10" :disabled="false" :step="2"></el-input-number>
     </div>
+
+    <div class="block">
+      <el-select v-model="value" clearable multiple placeholder="清选择">
+        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled"></el-option>
+      </el-select>
+    </div>
+
+    <div class="block">
+      <el-select v-model="value6" class="my-city" placeholder="请选择">
+        <el-option
+        v-for="item in selectCities"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        >
+        <span style="float: left">{{item.label}}</span>
+        <span style="float: right; color: #8492a6;font-size: 13px">{{item.value}}</span>
+        </el-option>
+      </el-select>
+    </div>
+
+    <div class="block">
+      <el-select v-model="value7" placeholder="请选择">
+        <el-option-group
+        v-for="group in options3"
+        :key="group.label"
+        :label="group.label"
+        >
+        <el-option
+        v-for="item in group.options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        ></el-option>
+        </el-option-group>
+      </el-select>
+    </div>
   </div>
 </template>
 <script>
@@ -256,7 +293,6 @@ Vue.component('my-item-zh', {
 
 const cityOptions = ['上海', '北京', '广州', '深圳']
 export default {
-  name: 'index',
   data() {
     return {
       visible: false,
@@ -286,7 +322,80 @@ export default {
       state3: '',
       state4: '',
       timeout: null,
-      num1: 1
+      num1: 1,
+      options: [{
+        value: '选项1',
+        label: '黄金糕'
+      }, {
+        value: '选项2',
+        label: '双皮奶',
+        disabled: true
+      }, {
+        value: '选项3',
+        label: '蚵仔煎'
+      }, {
+        value: '选项4',
+        label: '龙须面'
+      }, {
+        value: '选项5',
+        label: '北京烤鸭'
+      }],
+      value: '',
+      value6: '',
+      selectCities: [
+        {
+          value: 'Beijing',
+          label: '北京'
+        },
+        {
+          value: 'Shanghai',
+          label: '上海'
+        },{
+          value: 'Guangzhou',
+          label: '广州'
+        }, {
+          value: 'Shenzhen',
+          label: '深圳'
+        }
+      ],
+      value7: '',
+      options3: [
+        {
+          label: '热门城市',
+          options: [
+            {
+              value: 'Beijing',
+              label: '北京'
+            },
+            {
+              value: 'Shanghai',
+              label: '上海'
+            },{
+              value: 'Guangzhou',
+              label: '广州'
+            }, {
+              value: 'Shenzhen',
+              label: '深圳'
+            }
+          ]
+        },
+        {
+          label: '城市名',
+          options: [{
+            value: 'Chengdu',
+            label: '成都'
+          }, {
+            value: 'Shenzhen',
+            label: '深圳'
+          }, {
+            value: 'Guangzhou',
+            label: '广州'
+          }, {
+            value: 'Dalian',
+            label: '大连'
+          }]
+        }
+      ]
     }
   },
   mounted() {
@@ -413,6 +522,9 @@ export default {
 <style lang="scss" scoped>
 .parent-container {
   margin: 8px;
+  max-height: 50vh;
+  max-width: 100vw;
+  overflow-y: auto;
 }
 
 .transition-box {
@@ -465,11 +577,14 @@ div.block {
   margin-bottom: 20px;
 }
 
-
 </style>
+
 <style lang="scss">
 .el-select .el-input {
   width: 110px;
+}
+.my-city .el-input {
+  width: 220px;
 }
 .my-autocomplete {
   li {

@@ -14,7 +14,6 @@ const router = new Router({
   base: __dirname,
   scrollBehavior(to, from, savedPosition) {
     // 只在history模式下生效
-    console.log('from: ', from);
     if (savedPosition) {
       return savedPosition;
     } else {
@@ -27,10 +26,6 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/index'
-    },
-    {
-      path: '/index',
       name: 'index',
       component: Index
     },
@@ -52,8 +47,6 @@ const router = new Router({
   ]
 });
 
-router.afterEach((from, to) => {
-  console.log(from.name);
-});
+router.afterEach((from, to) => {});
 
 export default router;
