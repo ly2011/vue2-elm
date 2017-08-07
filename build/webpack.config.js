@@ -20,8 +20,7 @@ const faviconPath = resolve('src/assets/favicon.ico');
 
 const developmentConf = merge(baseConfig, {
   entry: {
-    index: resolve('src/index.js'),
-    vendor: ['babel-polyfill']
+    index: resolve('src/index.js')
   },
   plugins: [
     new webpack.DefinePlugin({

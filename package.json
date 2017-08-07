@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "clean": "rimraf node_modules dist && npm cache clean && cnpm cache clean",
-    "start": "npm run dev",
+    "start": "lite-server",
     "dev": "webpack-dev-server --config build/webpack.config.js --history-api-fallback --devtool eval --colors --inline --hot --content-base src",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.production.js",
     "fix": "eslint build/**/*.js src/**/*.js server/**/*.js src/**/*.vue --fix",
@@ -74,6 +74,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "lint-staged": "^3.6.0",
+    "lite-server": "^2.3.0",
     "node-sass": "4.5.0",
     "offline-plugin": "^4.8.1",
     "open": "0.0.5",

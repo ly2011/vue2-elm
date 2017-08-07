@@ -168,6 +168,8 @@ const productionConf = merge(baseConfig, {
       // minChunks: Infinity, // 提取所有entry共同依赖的模块
 
       name: 'vendor',
+      // async: true,
+      // children: true,
       minChunks: function(module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
@@ -181,7 +183,10 @@ const productionConf = merge(baseConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new CommonsChunkPlugin({ name: 'manifest', chunks: ['vendor'] }),
     // 每次运行webpack清理上一次的文件夹
-    new CleanPlugin([buildPath]),
+    new CleanPlugin(buildPath, {
+      root: resolve('.'),
+      verbose: true
+    }),
     // new webpack.NamedModulesPlugin(),
     new webpack.HashedModuleIdsPlugin(),
 
