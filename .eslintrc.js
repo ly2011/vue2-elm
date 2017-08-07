@@ -13,17 +13,27 @@ module.exports = {
   env: {
     browser: true //预定义的全局变量，这里是浏览器环境
   },
-  extends: ['prettier'],
-  plugins: ['react', 'jsx-a11y', 'import','vue', 'html', 'prettier'],
+  plugins: ['react', 'jsx-a11y', 'import', 'vuefix', 'html'],
   rules: {
-    'prettier/prettier': [
+    'vuefix/vuefix': [2, { auto: true }],
+    // allow paren-less arrow functions
+    'arrow-parens': 0,
+    // allow async-await
+    'generator-star-spacing': 0,
+    // allow debugger during development
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-multiple-empty-lines': [
       'error',
       {
-        singleQuote: true,
-        trailingComma: 'none',
-        bracketSpacing: true,
-        parser: 'babylon'
+        max: 2,
+        maxEOF: 2,
+        maxBOF: 2
       }
-    ]
+    ],
+    'space-before-function-paren': 0,
+    semi: 0,
+    'no-new': 0,
+    'no-unused-vars': 0,
+    'no-undef': 0
   }
 };

@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const cssnext = require('postcss-cssnext');
 const cls = require('postcss-custom-media');
 const customProperties = require('postcss-custom-properties');
-const pxtorem = require('postcss-pxtorem');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var isPro = process.env.NODE_ENV === 'production';

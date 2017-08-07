@@ -8,31 +8,21 @@
     "start": "npm run dev",
     "dev": "webpack-dev-server --config build/webpack.config.js --history-api-fallback --devtool eval --colors --inline --hot --content-base src",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.production.js",
-    "fix": "eslint build/**/*.js src/**/*.js server/**/*.js --fix",
+    "fix": "eslint build/**/*.js src/**/*.js server/**/*.js src/**/*.vue --fix",
     "server": "nodemon server/index.js",
     "publish": "npm run build",
     "precommit": "lint-staged",
     "et": "et -i",
-    "fix-vue": "eslint src/App.vue --fix"
+    "fix-vue": "eslint src/App.vue --no-ignore --fix"
   },
-  "keywords": [
-    "vue",
-    "vuex",
-    "vue-router",
-    "webpack3"
-  ],
+  "keywords": ["vue", "vuex", "vue-router", "webpack3"],
   "author": "ly2011",
   "license": "ISC",
   "engines": {
     "node": ">=6.5",
     "npm": ">=3.10"
   },
-  "browserslist": [
-    ">1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "not ie < 9"
-  ],
+  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
   "devDependencies": {
     "awesome-typescript-loader": "^3.1.3",
     "axios": "^0.16.1",
@@ -62,18 +52,13 @@
     "cssnano": "^3.10.0",
     "element-theme-default": "^1.4.1",
     "eslint": "^4.3.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-config-vue": "^2.0.2",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-html": "^3.1.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
-    "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^6.10.3",
-    "eslint-plugin-vue": "^2.1.0",
-    "eslint-plugin-vue-libs": "^1.2.0",
+    "eslint-plugin-vuefix": "^0.2.0",
     "expect": "^1.12.0",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.2",
@@ -89,16 +74,12 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "lint-staged": "^3.6.0",
-    "node-gyp": "^3.6.2",
     "node-sass": "4.5.0",
     "offline-plugin": "^4.8.1",
     "open": "0.0.5",
     "optimize-css-assets-webpack-plugin": "^1.3.2",
     "postcss-cssnext": "^2.11.0",
     "postcss-loader": "^0.7.0",
-    "postcss-pxtorem": "^4.0.1",
-    "prettier": "^1.5.3",
-    "prettier-eslint": "^6.4.2",
     "react-hot-loader": "^1.3.0",
     "react-test-renderer": "^15.4.2",
     "react-transform-hmr": "^1.0.4",
@@ -165,7 +146,7 @@
   },
   "lint-staged": {
     "src/**/*.js": [
-      "eslint build/**/*.js src/**/*.js server/**/*.js --fix",
+      "eslint build/**/*.js src/**/*.js server/**/*.js src/**/*.vue --fix",
       "git add"
     ]
   }

@@ -182,7 +182,9 @@ const productionConf = merge(baseConfig, {
     new CommonsChunkPlugin({ name: 'manifest', chunks: ['vendor'] }),
     // 每次运行webpack清理上一次的文件夹
     new CleanPlugin([buildPath]),
-    new webpack.NamedModulesPlugin(),
+    // new webpack.NamedModulesPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
+
     // copy static
     new CopyWebpackPlugin([
       {
