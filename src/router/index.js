@@ -5,6 +5,8 @@ const Index = () => import('../views/index');
 const Login = () => import('../views/login');
 const Search = () => import('../views/search');
 const Player = () => import('../views/player');
+const activity_publish = () => import('../views/activity_publish/index');
+const step1 = () => import('../views/activity_publish/step1');
 
 Vue.use(Router);
 
@@ -43,6 +45,17 @@ const router = new Router({
       path: '/player',
       name: 'player',
       component: Player
+    },
+    {
+      path: '/activity_publish',
+      name: 'activity_publish',
+      component: activity_publish,
+      children: [
+        {
+          path: '',
+          component: step1
+        }
+      ]
     }
   ]
 });
