@@ -1,6 +1,6 @@
 <template>
   <div class="step1">
-    <el-form :model="step1Form" label-width="80px">
+    <el-form :model="step1Form" label-width="80px" class="step1Form" label-position="top">
       <el-form-item label="活动名称">
         <el-input v-model="step1Form.name"></el-input>
       </el-form-item>
@@ -39,12 +39,61 @@
           icon="plus"
         ></el-button>
       </el-form-item>
+
+      <el-form-item label="活动时间" style="width: 750px">
+        <el-col :span="5">
+          <el-row>
+            <el-form-item>
+              <el-date-picker
+                v-model="step1Form.activeStartTimeDate"
+                type="date"
+                placeholder="活动开始日期"
+              >
+              </el-date-picker>
+            </el-form-item>
+          </el-row>
+
+        </el-col>
+        <el-col :span="5">
+          <el-row>
+            <el-form-item>
+              <el-time-select
+                v-model="step1Form.activeStartTimeTime"
+                :picker-options="{start: '00:00', step: '00:15', end: '23:45'}"
+                placeholder="请选择时间点"
+              >
+              </el-time-select>
+            </el-form-item>
+          </el-row>
+
+        </el-col>
+
+        <el-col :span="1" style="text-align: center;">-</el-col>
+
+        <el-col :span="5">
+          <el-form-item>
+            <el-date-picker
+              v-model="step1Form.activeEndTimeDate"
+              type="date"
+              placeholder="活动结束日期"
+            ></el-date-picker>
+          </el-form-item>
+        </el-col>
+        <el-col :span="5">
+          <el-form-item>
+            <el-time-select
+              v-model="step1Form.activeEndTimeTime"
+              :picker-options="{start: '00:00', step: '00:15', end: '23:45'}"
+            ></el-time-select>
+          </el-form-item>
+        </el-col>
+      </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
   import Vue from 'vue'
-  import { Form, FormItem, Input, Select, Option, DatePicker,TimePicker,Switch, Checkbox, CheckboxGroup, Radio, RadioGroup, Button, RadioButton, Tag } from 'element-ui'
+  import { Form, FormItem, Input, Select, Option, DatePicker,TimePicker,TimeSelect,Switch, Checkbox, CheckboxGroup, Radio, RadioGroup, Button, RadioButton, Tag } from 'element-ui'
   Vue.use(Form)
   Vue.use(FormItem)
   Vue.use(Input)
@@ -60,6 +109,7 @@
   Vue.use(Button)
   Vue.use(RadioButton)
   Vue.use(Tag)
+  Vue.use(TimeSelect)
   export default {
     name: 'step1',
     data() {
@@ -74,7 +124,15 @@
           cate: '',
           tags: [],
           inputNewTagVisible: false,
-          inputNewTagValue: ''
+          inputNewTagValue: '',
+          activeStartTimeDate: '',
+          activeStartTimeTime: '',
+          activeEndTimeDate: '',
+          activeEndTimeTime: '',
+          signStartTimeDate: '',
+          signStartTimeTime: '',
+          signEndTimeDate: '',
+          signEndTimeTime: '',
         }
       }
     },
@@ -103,3 +161,10 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+/* 时间选择器 */
+.step1 .el-date-editor{
+  width:150px;
+}
+</style>

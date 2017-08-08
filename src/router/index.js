@@ -48,7 +48,6 @@ const router = new Router({
     },
     {
       path: '/activity_publish',
-      name: 'activity_publish',
       component: activity_publish,
       children: [
         {
