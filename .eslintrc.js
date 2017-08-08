@@ -14,7 +14,7 @@ module.exports = {
     browser: true //预定义的全局变量，这里是浏览器环境
   },
   extends: ['standard'],
-  plugins: ['react', 'jsx-a11y', 'import', 'vuefix', 'html'],
+  plugins: ['react', 'jsx-a11y', 'import', 'promise', 'vuefix', 'html'],
   rules: {
     'vuefix/vuefix': [2, { auto: true }],
     // allow paren-less arrow functions
