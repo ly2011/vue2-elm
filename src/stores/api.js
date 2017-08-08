@@ -9,8 +9,8 @@ const baseURL =
     ? 'http://127.0.0.1:3000'
     : 'http://127.0.0.1:3000';
 
-const axios_config = {
-  baseURL: baseURL,
+const axiosConfig = {
+  baseURL,
   // 请求头信息
   headers: {
     // "X-Requested-With": "XMLHttpRequest", // (这个会引起OPTIONS请求)
@@ -24,7 +24,7 @@ const axios_config = {
   }
 };
 
-const instance = axios.create(axios_config);
+const instance = axios.create(axiosConfig);
 
 export default {
   // 根据请求的时间戳获取 banner 列表

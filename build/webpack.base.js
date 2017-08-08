@@ -2,10 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const cssnext = require('postcss-cssnext');
 const cls = require('postcss-custom-media');
+
 const customProperties = require('postcss-custom-properties');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var isPro = process.env.NODE_ENV === 'production';
+const isPro = process.env.NODE_ENV === 'production';
 
 function resolve(dir = '.') {
   return path.join(__dirname, '..', dir);
@@ -24,7 +25,7 @@ const srcPath = resolve('src');
 const faviconPath = resolve('src/assets/favicon.ico');
 const buildPath = resolve('dist');
 const nodeModulesPath = resolve('node_modules');
-const eslintConfigPath = rootPath + '.eslintrc.js';
+const eslintConfigPath = `${rootPath}.eslintrc.js`;
 
 module.exports = {
   context: rootPath,

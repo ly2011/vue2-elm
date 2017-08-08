@@ -2,6 +2,7 @@
  * 基础配置
  */
 import FastClick from 'fastclick';
+
 ((doc, win) => {
   const docEl = doc.documentElement;
   const resizeEvt =
@@ -11,7 +12,7 @@ import FastClick from 'fastclick';
     if (!clientWidth) {
       return;
     }
-    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+    docEl.style.fontSize = `${100 * (clientWidth / 750)}px`;
   };
   if (!doc.addEventListener) {
     return;

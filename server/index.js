@@ -8,7 +8,7 @@ const convert = require('koa-convert');
 const app = new Koa();
 const router = new Router();
 
-let baseURL = 'http://m.maizuo.com/v4/api';
+const baseURL = 'http://m.maizuo.com/v4/api';
 
 app.use(
   convert(
@@ -23,7 +23,7 @@ app.use(
 
 router.use(async (ctx, next) => {
   console.log('ctx.request.method: ', ctx.request.method);
-  if (ctx.request.method == 'OPTIONS') {
+  if (ctx.request.method === 'OPTIONS') {
     ctx.response.status = 200;
     return;
   }
@@ -31,7 +31,7 @@ router.use(async (ctx, next) => {
 });
 
 router.use('/favicon.ico', ctx => {
-  return;
+
 });
 
 router.get('/', (ctx, next) => {

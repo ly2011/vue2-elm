@@ -5,6 +5,7 @@ const baseConfig = require('./webpack.base');
 // const getEntries = require('./getEntries')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
@@ -170,7 +171,7 @@ const productionConf = merge(baseConfig, {
       name: 'vendor',
       // async: true,
       // children: true,
-      minChunks: function(module, count) {
+      minChunks(module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
@@ -193,15 +194,15 @@ const productionConf = merge(baseConfig, {
     // copy static
     new CopyWebpackPlugin([
       {
-        from: srcPath + '/static',
-        to: buildPath + '/static',
+        from: `${srcPath}/static`,
+        to: `${buildPath}/static`,
         ignore: ['.*']
       }
     ]),
     new CompressionWebpackPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
-      test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+      test: new RegExp(`\\.(${productionGzipExtensions.join('|')})$`),
       threshold: 10240,
       minRatio: 0.8
     }),

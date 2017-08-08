@@ -13,6 +13,7 @@ module.exports = {
   env: {
     browser: true //预定义的全局变量，这里是浏览器环境
   },
+  extends: ['standard'],
   plugins: ['react', 'jsx-a11y', 'import', 'vuefix', 'html'],
   rules: {
     'vuefix/vuefix': [2, { auto: true }],
@@ -25,13 +26,14 @@ module.exports = {
     'no-multiple-empty-lines': [
       'error',
       {
-        max: 2,
-        maxEOF: 2,
-        maxBOF: 2
+        max: 1,
+        maxEOF: 1,
+        maxBOF: 1
       }
     ],
     'space-before-function-paren': 0,
     semi: 0,
+    index: 0,
     'no-new': 0,
     'no-unused-vars': 0,
     'no-undef': 0

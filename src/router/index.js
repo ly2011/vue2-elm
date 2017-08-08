@@ -5,7 +5,7 @@ const Index = () => import('../views/index');
 const Login = () => import('../views/login');
 const Search = () => import('../views/search');
 const Player = () => import('../views/player');
-const activity_publish = () => import('../views/activity_publish/index');
+const activityPublish = () => import('../views/activity_publish/index');
 const step1 = () => import('../views/activity_publish/step1');
 
 Vue.use(Router);
@@ -18,12 +18,11 @@ const router = new Router({
     // 只在history模式下生效
     if (savedPosition) {
       return savedPosition;
-    } else {
-      if (from.meta.keepAlive) {
-        from.meta.savedPosition = document.body.scrollTop;
-      }
-      return { x: 0, y: to.meta.savedPosition || 0 };
     }
+    if (from.meta.keepAlive) {
+      from.meta.savedPosition = document.body.scrollTop;
+    }
+    return { x: 0, y: to.meta.savedPosition || 0 };
   },
   routes: [
     {
@@ -48,7 +47,7 @@ const router = new Router({
     },
     {
       path: '/activity_publish',
-      component: activity_publish,
+      component: activityPublish,
       children: [
         {
           path: '',
