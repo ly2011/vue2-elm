@@ -337,7 +337,10 @@ module.exports = {
         postcss() {
           return [
             cls(),
-            cssnext({ flexbox: true, browsers: ['last 10 versions'] }),
+            cssnext({
+              flexbox: true,
+              browsers: ['last 10 versions', 'ie>=8', '>1% in CN']
+            }),
             customProperties()
           ];
         }

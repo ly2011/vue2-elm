@@ -1,5 +1,9 @@
 ## ERROR
 
+## 2017-08-08
+
+- 升级 `postcss-loader` 后, 由于内部引入了 `postcss-load-config`, 所以需要在根目录下配置 `postcss.config.js` 才能运行项目
+
 ### 2017-08-02
 
 - 引入 `element-ui` 后，对 `element-ui` 没法提取外链css
