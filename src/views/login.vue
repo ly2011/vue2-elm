@@ -94,9 +94,8 @@ export default {
     },
     menuClick(index, event) {
       if (!event._constructed) {
-        return
-      }
 
+      }
     }
   }
 }

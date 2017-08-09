@@ -92,74 +92,74 @@
   </div>
 </template>
 <script>
-  import Vue from 'vue'
-  import { Form, FormItem, Input, Select, Option, DatePicker,TimePicker,TimeSelect,Switch, Checkbox, CheckboxGroup, Radio, RadioGroup, Button, RadioButton, Tag } from 'element-ui'
-  Vue.use(Form)
-  Vue.use(FormItem)
-  Vue.use(Input)
-  Vue.use(Select)
-  Vue.use(Option)
-  Vue.use(DatePicker)
-  Vue.use(TimePicker)
-  Vue.use(Switch)
-  Vue.use(Checkbox)
-  Vue.use(CheckboxGroup)
-  Vue.use(Radio)
-  Vue.use(RadioGroup)
-  Vue.use(Button)
-  Vue.use(RadioButton)
-  Vue.use(Tag)
-  Vue.use(TimeSelect)
-  export default {
-    name: 'step1',
-    data() {
-      return {
-        step1Form: {
-          name: '',
-          cate_list: [
-            { name: '未发布' },
-            { name: '测试活动' },
-            { name: '精彩活动' }
-          ],
-          cate: '',
-          tags: [],
-          inputNewTagVisible: false,
-          inputNewTagValue: '',
-          activeStartTimeDate: '',
-          activeStartTimeTime: '',
-          activeEndTimeDate: '',
-          activeEndTimeTime: '',
-          signStartTimeDate: '',
-          signStartTimeTime: '',
-          signEndTimeDate: '',
-          signEndTimeTime: '',
-        }
-      }
-    },
-    methods: {
-      handleCloseTag(tag) {
-        this.step1Form.tags.splice(this.step1Form.tags.indexOf(tag), 1)
-      },
-      showInputTag() {
-        this.step1Form.inputNewTagVisible = true
-        this.$nextTick(() => {
-          this.$refs.saveTagInput.$refs.input.focus()
-        })
-      },
-      handleInputConfirm () {
-        const inputNewTagValue = this.step1Form.inputNewTagValue
-        if (!!inputNewTagValue) {
-          if (!this.step1Form.tags.includes(inputNewTagValue)) {
-            this.step1Form.tags.push(inputNewTagValue)
-          } else {
-            alert('不能重复添加标签')
-          }
-        }
-        this.step1Form.inputNewTagVisible = false
-        this.step1Form.inputNewTagValue = ''
+import Vue from 'vue'
+import { Form, FormItem, Input, Select, Option, DatePicker, TimePicker, TimeSelect, Switch, Checkbox, CheckboxGroup, Radio, RadioGroup, Button, RadioButton, Tag } from 'element-ui'
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(DatePicker)
+Vue.use(TimePicker)
+Vue.use(Switch)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(Radio)
+Vue.use(RadioGroup)
+Vue.use(Button)
+Vue.use(RadioButton)
+Vue.use(Tag)
+Vue.use(TimeSelect)
+export default {
+  name: 'step1',
+  data() {
+    return {
+      step1Form: {
+        name: '',
+        cate_list: [
+          { name: '未发布' },
+          { name: '测试活动' },
+          { name: '精彩活动' }
+        ],
+        cate: '',
+        tags: [],
+        inputNewTagVisible: false,
+        inputNewTagValue: '',
+        activeStartTimeDate: '',
+        activeStartTimeTime: '',
+        activeEndTimeDate: '',
+        activeEndTimeTime: '',
+        signStartTimeDate: '',
+        signStartTimeTime: '',
+        signEndTimeDate: '',
+        signEndTimeTime: ''
       }
     }
+  },
+  methods: {
+    handleCloseTag(tag) {
+      this.step1Form.tags.splice(this.step1Form.tags.indexOf(tag), 1)
+    },
+    showInputTag() {
+      this.step1Form.inputNewTagVisible = true
+      this.$nextTick(() => {
+        this.$refs.saveTagInput.$refs.input.focus()
+      })
+    },
+    handleInputConfirm () {
+      const inputNewTagValue = this.step1Form.inputNewTagValue
+      if (inputNewTagValue) {
+        if (!this.step1Form.tags.includes(inputNewTagValue)) {
+          this.step1Form.tags.push(inputNewTagValue)
+        } else {
+          alert('不能重复添加标签')
+        }
+      }
+      this.step1Form.inputNewTagVisible = false
+      this.step1Form.inputNewTagValue = ''
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

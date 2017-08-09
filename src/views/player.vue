@@ -93,7 +93,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import {Form, FormItem,Input, Select,Option,Col,Row,DatePicker,TimePicker,Switch, Checkbox, CheckboxGroup,Radio,RadioGroup, Button, RadioButton } from 'element-ui'
+import { Form, FormItem, Input, Select, Option, Col, Row, DatePicker, TimePicker, Switch, Checkbox, CheckboxGroup, Radio, RadioGroup, Button, RadioButton } from 'element-ui'
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
@@ -135,11 +135,11 @@ export default {
       },
       rules: {
         name: [
-          {required: true,message: '请输入活动名称', trigger: 'blur'},
+          {required: true, message: '请输入活动名称', trigger: 'blur'},
           {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
         ],
         region: [
-          {required: true,message: '请选择活动区域', trigger: 'change'}
+          {required: true, message: '请选择活动区域', trigger: 'change'}
         ],
         date1: [
           {type: 'date', required: true, message: '请选择日期', trigger: 'change'}

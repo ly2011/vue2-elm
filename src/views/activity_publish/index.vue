@@ -47,10 +47,9 @@ export default {
       this.$router.go(-1)
       this.step--
       this.goStep(this.step)
-
     },
     handleNextStep() {
-      this.$router.push(`/activity_publish/step${this.step+1}`)
+      this.$router.push(`/activity_publish/step${this.step + 1}`)
       this.step++
       this.goStep(this.step)
     },
@@ -58,7 +57,7 @@ export default {
       console.log('发布')
     },
     goStep(n) {
-      switch(n) {
+      switch (n) {
         case 1: {
           this.preview = true
           this.preStep = false
